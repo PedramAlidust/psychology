@@ -94,6 +94,14 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'verification_code' => 'required|numeric',
             'password' => 'required|min:6'
+        ], [
+            'email.required' => 'جهت ثبت نام ایمیل را تکمیل کنید',
+            'email.email' => 'لطفا یک ایمیل معتبر وارد کنید',
+            'email.unique' => 'با این ایمیل قبلا ثبت نام شده است',
+            'verification_code.required' => 'کد ثبت نام صحیح نمی باشد',
+            'verification_code.numeric' => 'کد ثبت نام باید عدد باشد',
+            'password.required' => 'جهت ثبت نام باید پسورد را وارد کنید',
+            'password.min' => 'پسورد باید حداقل 6 کاراکتر باشد',
         ]);
 
         //Check if verification code is correct
