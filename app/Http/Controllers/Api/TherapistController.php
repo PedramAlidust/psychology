@@ -72,7 +72,7 @@ class TherapistController extends Controller
             ->first();
 
         if ($existingTherapist) {
-            return response()->json(['error' => 'قبلا ثبت نام کرده اید, جهت ویرایش اطلاعات به ایمیل karsite123@gmail.com پیام ارسال کنید'], 409);
+            return response()->json(['error' => 'قبلا ثبت نام کرده اید, جهت ویرایش اطلاعات به ایمیل karsite1234@gmail.com پیام ارسال کنید'], 409);
         }
 
         $therapist = Therapist::create([
