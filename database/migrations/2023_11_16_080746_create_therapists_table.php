@@ -21,6 +21,7 @@ return new class extends Migration
 
             $table->string('education');
             $table->string('phone_number');
+            $table->string('therapist_code');
             $table->string('profile_picture')->nullable();
 
             $table->text('description');
