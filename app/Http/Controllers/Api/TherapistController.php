@@ -43,11 +43,11 @@ class TherapistController extends Controller
             'treatment_fields' => 'required|json',
             'education' => 'required|string',
             'phone_number' => 'required|string|max:11',
+            'therapist_code' => 'required|string',
             'profile_picture' => 'nullable|string',
             'description' => 'required|string',
             'price' => 'required|numeric|between:0,9999.999',
             'work_experience' => 'required|integer|min:0',
-            'therapist_code' => 'required|string',
         ],
         [
             'name.required' => 'نام خود را وارد کنید',
@@ -57,6 +57,8 @@ class TherapistController extends Controller
             'education.required' => 'تحصیلات الزامی است.',
             'phone_number.required' => 'شماره تلفن الزامی است.',
             'phone_number.max' => 'شماره تلفن نباید بیشتر از 11 کاراکتر باشد.',
+            'therapist_code.required' => 'کد نظام روانشناسی خود یا معرف را وارد کنید',
+            'therapist_code.string' => 'کد تراپیست باید عدد باشد', 
             'profile_picture.string' => 'تصویر پروفایل باید یک رشته معتبر باشد.',
             'description.required' => 'توضیحات الزامی است.',
             'price.required' => 'قیمت الزامی است.',
@@ -65,8 +67,6 @@ class TherapistController extends Controller
             'work_experience.required' => 'تجربه کاری الزامی است.',
             'work_experience.integer' => 'تجربه کاری باید یک عدد صحیح باشد.',
             'work_experience.min' => 'تجربه کاری نباید کمتر از 0 باشد.',
-            'therapist_code.required' => 'کد نظام روانشناسی خود یا معرف را وارد کنید',
-            'therapist_code.string' => 'کد تراپیست باید عدد باشد', 
         ] 
     );
 
