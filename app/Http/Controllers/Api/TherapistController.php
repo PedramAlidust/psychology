@@ -40,21 +40,39 @@ class TherapistController extends Controller
         // Validate request data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'treatment_fields' => 'nullable|json',
+            'treatment_fields' => 'required|json',
             'education' => 'required|string',
             'phone_number' => 'required|string|max:11',
             'profile_picture' => 'nullable|string',
             'description' => 'required|string',
             'price' => 'required|numeric|between:0,9999.999',
             'work_experience' => 'required|integer|min:0',
-        ]);
+        ],
+        [
+            'name.required' => 'نام خود را وارد کنید',
+            'name.max' => 'نام نباید بیشتر از 255 کاراکتر باشد.',
+            'treatment_fields.required' => 'فیلد‌های درمان الزامی هستند.',
+            'treatment_fields.json' => 'فیلد‌های درمان باید یک رشته JSON معتبر باشند.',
+            'education.required' => 'تحصیلات الزامی است.',
+            'phone_number.required' => 'شماره تلفن الزامی است.',
+            'phone_number.max' => 'شماره تلفن نباید بیشتر از 11 کاراکتر باشد.',
+            'profile_picture.string' => 'تصویر پروفایل باید یک رشته معتبر باشد.',
+            'description.required' => 'توضیحات الزامی است.',
+            'price.required' => 'قیمت الزامی است.',
+            'price.numeric' => 'قیمت باید یک عدد معتبر باشد.',
+            'price.between' => 'قیمت باید بین 0 و 9999.999 باشد.',
+            'work_experience.required' => 'تجربه کاری الزامی است.',
+            'work_experience.integer' => 'تجربه کاری باید یک عدد صحیح باشد.',
+            'work_experience.min' => 'تجربه کاری نباید کمتر از 0 باشد.',
+        ] 
+    );
 
         //Check if therapist already exist
         $existingTherapist = Therapist::where('user_id', $request->user()->id)
             ->first();
 
         if ($existingTherapist) {
-            return response()->json(['error' => 'درمانگری با این مشخصات وجود دارد'], 409);
+            return response()->json(['error' => 'قبلا ثبت نام کرده اید, جهت ویرایش اطلاعات وارد بخش ویرایش اطلاعات شوید'], 409);
         }
 
         $therapist = Therapist::create([
@@ -62,7 +80,13 @@ class TherapistController extends Controller
             'user_id' => $request->user()->id
         ]);
 
-        return new TherapistResource($therapist);
+        if ($therapist) {
+            //If the create was successfull
+            return response()->json(['message' => 'اطلاعات شما با موفقیت تکمیل شد و پس از تایید در قسمت درمانگر ها نمایش داده خواهد شد'], 200);
+        } else {
+            //If there was issue with the create 
+            return response()->json(['error' => 'در ثبت اطلاعات مشکلی پیش آمد', 500]);
+        }
     }
 
     /**
