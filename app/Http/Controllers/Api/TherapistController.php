@@ -65,7 +65,8 @@ class TherapistController extends Controller
             'work_experience.required' => 'تجربه کاری الزامی است.',
             'work_experience.integer' => 'تجربه کاری باید یک عدد صحیح باشد.',
             'work_experience.min' => 'تجربه کاری نباید کمتر از 0 باشد.',
-            'therapist_code.required' => 'کد نظام روانشناسی خود یا معرف را وارد کنید', 
+            'therapist_code.required' => 'کد نظام روانشناسی خود یا معرف را وارد کنید',
+            'therapist_code.string' => 'کد تراپیست باید عدد باشد', 
         ] 
     );
 
